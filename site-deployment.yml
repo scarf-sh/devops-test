@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: hello-world
-          image: hello-world:latest
+          image: public.ecr.aws/u2q8s0h1/hello-world-nginx:latest
           ports:
-            - containerPort: 8080
+            - containerPort: 80

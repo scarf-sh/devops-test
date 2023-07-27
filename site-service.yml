@@ -8,5 +8,6 @@ spec:
   type: NodePort
   ports:
     - nodePort: 30950
-      targetPort: 8080
-      port: 8080
+      targetPort: 80
+      port: 80
+      protocol: TCP
