@@ -1,0 +1,35 @@
+# Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hello-world-deployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello-world
+  template:
+    metadata:
+      labels:
+        app: hello-world
+    spec:
+      containers:
+      - name: hello-world-container
+        image: stevendev/scarf_hello-world:latest  # Replace with your Docker image URL from the container registry
+        ports:
+        - containerPort: 80
+
+# Service
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hello-world-service
+spec:
+  selector:
+    app: hello-world
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer  # Change to 'ClusterIP' or 'NodePort' if you don't want an external load balancer

@@ -1,0 +1,17 @@
+name: Deploy to ECR and Trigger ArgoDC runs
+
+on:
+ 
+  push:
+    branches: [ users/stephen ]
+
+jobs:
+    kind:
+        runs-on: ubuntu-latest
+        steps:
+          - uses: actions/checkout@master
+          - uses: engineerd/setup-kind@v0.1.0
+          - name: Testing
+            run: |
+              export KUBECONFIG="$(kind get kubeconfig-path)"
+              kubectl cluster-info
