@@ -11,7 +11,7 @@ jobs:
       
           steps:
             - name: checkout@scm
-              uses: actions/checkout@users/stephen
+              uses: actions/checkout@v2
       
             - name: setup@kindconfig
               run: |
