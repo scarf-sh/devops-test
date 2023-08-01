@@ -14,4 +14,13 @@ This README file provides instructions on how to set up and run the "Hello, Worl
 
 ```
 git clone https://github.com/scarf-sh/devops-test.git
+```
 
+2. Create a new branch:
+
+
+3. Dockerize the application:
+
+4. Push the Docker image to a container registry:
+5. GitHub Actions Workflow:
+6. 
