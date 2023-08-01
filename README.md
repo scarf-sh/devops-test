@@ -30,6 +30,7 @@ COPY ./src/index.html /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
 ```
+
 #### Build the Docker image:
 ```Bash
 docker build -t scarf_hello-world:latest .
@@ -42,5 +43,26 @@ docker login
 # Replace stevendev with your Docker Hub (or container registry) username
 docker push stevendev/scarf_hello-world:latest
 ```
+
 ### GitHub Actions Workflow To Build Kind Cluster:
-6. 
+#### Create a directory:
+```Bash
+mkdir .github/workflows
+```
+
+#### Add the following content to .github/workflows/deployment.yaml:
+```Yaml
+name: Deploy to ECR and Trigger ArgoDC runs
+
+on:
+  push:
+    branches: [ dev ]
+
+jobs:
+  build:
+    name: Build Image
+    runs-on: ubuntu-latest
+    steps:
+      # Steps for building and pushing Docker images...
+      # (Add the content from the previous example)
+```
