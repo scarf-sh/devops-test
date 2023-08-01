@@ -26,8 +26,8 @@ jobs:
 
           - name: Deploy Kubernetes YAML
             run: |                
-                kubectl apply -f ../../site-deployment.yml
-                kubectl apply -f ../../site-service.yml
+                kubectl apply -f site-deployment.yml
+                kubectl apply -f site-service.yml
 
 # jobs:
 #         test:
