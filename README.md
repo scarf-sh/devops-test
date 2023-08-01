@@ -29,7 +29,19 @@ FROM nginx:alpine
 COPY ./src/index.html /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
+```
+Build the Docker image:
+```Bash
+docker build -t scarf_hello-world:latest .
+```
+Create a Dockerfile with the following content:
+```Dockerfile
+FROM nginx:alpine
+COPY ./src/index.html /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
 
 4. Push the Docker image to a container registry:
+
 5. GitHub Actions Workflow:
 6. 
