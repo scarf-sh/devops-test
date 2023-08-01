@@ -1,4 +1,4 @@
-name: Deploy Kind
+name: Deploy Kind Cluster
 
 on:
  
@@ -6,7 +6,7 @@ on:
     branches: [ users/stephen ]
 
 jobs:
-      create-cluster:
+      create-cluster-and-deploy-k8s-yml-file:
         runs-on: ubuntu-latest
         steps:
 
@@ -24,10 +24,18 @@ jobs:
               kubectl cluster-info
               docker ps
 
-          - name: Deploy Kubernetes YAML
+          - name: Deploy Kubernetes YAML [Deployment & Service]
             run: |                
                 kubectl apply -f site-deployment.yml
                 kubectl apply -f site-service.yml
+                kubectl get pods
+                kubectl get svc
+
+          - name: Teardown Kind Cluster
+            run: |
+                kubectl delete -f site-deployment.yml
+                kubectl delete -f site-service.yml
+                kind delete cluster
 
 # jobs:
 #         test:
