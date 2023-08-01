@@ -16,32 +16,31 @@ This README file provides instructions on how to set up and run the "Hello, Worl
 git clone https://github.com/scarf-sh/devops-test.git
 ```
 
-2. Create a new branch:
+### Create a new branch:
 ```
-git clone https://github.com/scarf-sh/devops-test.git
+git checkout -b users/stephen
 ```
 
-3. Dockerize the application:
+### Dockerize the application:
 
-Create a Dockerfile with the following content:
+#### Create a Dockerfile with the following content:
 ```Dockerfile
 FROM nginx:alpine
 COPY ./src/index.html /usr/share/nginx/html
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
 ```
-Build the Docker image:
+#### Build the Docker image:
 ```Bash
 docker build -t scarf_hello-world:latest .
 ```
-Create a Dockerfile with the following content:
+
+#### Push the Docker image to a container registry:
 ```Dockerfile
-FROM nginx:alpine
-COPY ./src/index.html /usr/share/nginx/html
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+docker login
 
-4. Push the Docker image to a container registry:
-
-5. GitHub Actions Workflow:
+# Replace stevendev with your Docker Hub (or container registry) username
+docker push stevendev/scarf_hello-world:latest
+```
+### GitHub Actions Workflow To Build Kind Cluster:
 6. 
