@@ -21,10 +21,12 @@ jobs:
           - name: Deploy Kubernetes YAML
             run: |
                 pwd
-                ls
+                ls -a
+                tree -h
                 cd ..
                 pwd
-                ls
+                ls -a
+                tree -h
                 #kubectl apply -f ../../site-deployment.yml
                 #kubectl apply -f ../../site-service.yml
 
