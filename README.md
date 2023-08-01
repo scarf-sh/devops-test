@@ -11,3 +11,7 @@ This README file provides instructions on how to set up and run the "Hello, Worl
 ## Instructions
 
 1. Clone the repository:
+
+```
+git clone https://github.com/scarf-sh/devops-test.git
+
