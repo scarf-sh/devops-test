@@ -52,17 +52,42 @@ mkdir .github/workflows
 
 #### Add the following content to .github/workflows/deployment.yaml:
 ```Yaml
-name: Deploy to ECR and Trigger ArgoDC runs
+name: Deploy Kind Cluster
 
 on:
+ 
   push:
-    branches: [ dev ]
+    branches: [ users/stephen ]
 
 jobs:
-  build:
-    name: Build Image
-    runs-on: ubuntu-latest
-    steps:
-      # Steps for building and pushing Docker images...
-      # (Add the content from the previous example)
+      create-cluster-and-deploy-k8s-yml-file:
+        runs-on: ubuntu-latest
+        steps:
+
+          - name: Checkout users/stephen branch
+            uses: actions/checkout@v2
+            with:
+              ref: users/stephen
+
+          - name: Create k8s Kind Cluster
+            uses: helm/kind-action@v1.5.0
+
+          - name: Testing
+            run: |
+              #export KUBECONFIG="$(kind get kubeconfig-path)"
+              kubectl cluster-info
+              docker ps
+
+          - name: Deploy Kubernetes YAML [Deployment & Service]
+            run: |                
+                kubectl apply -f site-deployment.yml
+                kubectl apply -f site-service.yml
+                kubectl get pods
+                kubectl get svc
+
+          - name: Teardown Kind Cluster
+            run: |
+                kubectl delete -f site-deployment.yml
+                kubectl delete -f site-service.yml
+                kind delete cluster
 ```
