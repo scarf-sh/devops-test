@@ -1,0 +1,21 @@
+# Default values for hello-world.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+fullname: "hello-world"
+
+replicaCount: 1
+
+image:
+  repository: hello-world
+  pullPolicy: Never
+  tag: "latest"
+
+nameOverride: "hello-world"
+fullnameOverride: "hello-world"
+
+service:
+  type: NodePort
+  port: 8080
+  targetPort: 8080
+  nodePort: 30950
